@@ -2,11 +2,13 @@
 
 == Requirements
   * ruby 1.9.2 or 1.8.7
-  * RSpec 2
+  * RSpec >= 2.0.0
+  * Bundler
 
 == How to play
 Ruby Golf is a game whereby the player is required to solve a number of problems (holes) in the fewest characters possible.  The course consists of nine holes that you must implement.  The holes are static methods that need to written for the Golf class (lib/golf.rb).  The requirements for these methods is specified by a set of RSpec examples for each hole (spec/golf_spec.rb).  To run the specs, simply run:
 
+  bundle install # first time only
   rake
 
 The first time you run this, all tests will fail.  The aim is to get all test to pass.  Building will also report the number of characters you took to complete the course.  The fewer characters you use, the better.
