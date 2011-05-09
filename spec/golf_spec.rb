@@ -6,20 +6,23 @@ describe "Golf" do
     it "should multiply the numbers in an array" do
       Golf.hole1([1,2,3,4]).should eql 24
     end
-
     it "should be 600 for [5,2,10,6]" do
       Golf.hole1([5,2,10,6]).should eql 600
     end
+    it "should be 50 for [2,5,5]" do
+      Golf.hole1([2,5,5]).should eql 50
+    end
   end
-
 
   describe ".hole2" do
     it "should sort a sentence by the second letter of each word" do
       Golf.hole2("the quick brown fox").should eql "the fox brown quick"
     end
-
     it "should successfully sort 'jumps over the lazy dog'" do
       Golf.hole2("jumps over the lazy dog").should eql "lazy the dog jumps over"
+    end
+    it "should successfully sort 'ruby golf is great'" do
+      Golf.hole2("ruby golf is great").should eql "golf great is ruby"
     end
   end
 
