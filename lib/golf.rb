@@ -36,6 +36,17 @@ class Golf
     }
   end
   
+  def s.hole7 a
+    c = nil
+    a.inject([]){ |m, i|
+      i-1 != c ? m << [i] : m[-1] << i
+      c = i
+      m
+    }.map { |i|
+      i.size > 1 && "#{i[0]}-#{i[-1]}" || i[0].to_s
+    }
+  end
+  
   def s.hole8 n
     f = ->(i) { i < 3 ? 1 : f[i-1] + f[i-2] }
     (1..n).map(&f)
