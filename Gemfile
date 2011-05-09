@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
 group :development do
-  gem "rspec"
+  gem "rspec", ">= 2.0.0"
   gem "rake"
 end
