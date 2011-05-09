@@ -82,7 +82,7 @@ describe "Golf" do
       Golf.hole6(5).should eql [1,2,"fizz",4,"buzz"]
     end
 
-    it "should play fizzbuzz to 10 with rules above and muliples of 3 and 5 are 'fizzbuzz'" do
+    it "should play fizzbuzz to 15 with rules above and muliples of 3 and 5 are 'fizzbuzz'" do
       Golf.hole6(15).should eql [1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11,"fizz",13,14,"fizzbuzz"]
     end
 
