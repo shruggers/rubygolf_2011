@@ -82,7 +82,7 @@ describe "Golf" do
       Golf.hole6(5).should eql [1,2,"fizz",4,"buzz"]
     end
 
-    it "should play fizzbuzz to 10 with rules above and muliples of 3 and 5 are 'fizzbuzz'" do
+    it "should play fizzbuzz to 15 with rules above and muliples of 3 and 5 are 'fizzbuzz'" do
       Golf.hole6(15).should eql [1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11,"fizz",13,14,"fizzbuzz"]
     end
 
@@ -91,6 +91,19 @@ describe "Golf" do
     end
   end
 
+  describe ".hole7" do
+    it "should collapse consecutive numbers to a range" do
+      Golf.hole7([1,2,3]).should eql ["1-3"]
+    end
+
+    it "should keep separate ranges distinct" do
+      Golf.hole7([1,2,3,5,6,7,100,101]).should eql ["1-3","5-7","100-101"]
+    end
+
+    it "should show isolated digits on their own" do
+      Golf.hole7([1,2,3,5,10,11,12]).should eql ["1-3","5","10-12"]
+    end
+  end
 
   describe ".hole8" do
     it "should give the first N numbers of the fibonacci sequence" do
