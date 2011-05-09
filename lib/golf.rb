@@ -1,41 +1,22 @@
 class Golf
   class << self
-    def hole1 a
-      a.inject :*
-    end
-    
-    def hole2 s
-      s.split.sort_by{|i| i[1]}*' '
-    end
-    
-    def hole3 n
-      hole1 1..n
-    end
-    
-    def hole4 a
-      a.map {|i| i.sub(/man(.*)/, 'hat(\0)').sub(/(dog.*)\)/,'\1(bone))').sub('cat','dead') }
-    end
-    
-    def hole5 a
-      (1..4).map{|i| a.each_cons(i).to_a}.inject :+
-    end
-    
-    def hole6 n
-      (1..n).map{|i| 
-        s='fizz' if i%3==0
+    i = 0
+    [
+    'a.inject :*',
+    "a.split.sort_by{|i| i[1]}*' '",
+    'hole1 1..a',
+    %q{a.map {|i| i.sub(/man(.*)/, 'hat(\0)').sub(/(dog.*)\)/,'\1(bone))').sub('cat','dead') }},
+    '(1..4).map{|i| a.each_cons(i).to_a}.inject :+',
+    '(1..a).map{|i| 
+        s="fizz" if i%3==0
         s="#{s}buzz" if i%5==0
         s || i 
-      }
-    end
-    
-    def hole8 n
-      a = [1,1]
-      (2..n-1).map {|i| a << a[-2] + a[-1] }
-      a
-    end
-    
-    def hole9 f
-      v = File.new(f).map{|l| l.chomp.split ', '}
+      }',
+    '',
+    'b = [1,1]
+      (2..a-1).map {|i| b << b[-2] + b[-1] }
+      b',
+    "v = File.new(a).map{|l| l.chomp.split ', '}
       loop {
         c = Hash.new 0
         
@@ -47,7 +28,9 @@ class Golf
 
         return m[0] if m[1] > v.size/2.0
         v = v.map{|v| v - [l[0]] } - [[]]
-      }
-    end
+      }"
+    ].map {|m| eval "def hole#{i += 1} a
+    #{m}
+    end"}
   end
 end
