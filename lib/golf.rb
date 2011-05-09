@@ -12,14 +12,18 @@ class Golf
   end
   
   def self.hole4 a
-    a.map{|i| i.sub %r/man\(.*\)/, "hat(\\0)"}.
-      map{|i| i.sub %r/dog\(\w+/, "\\0(bone)"}.
-        map{|i| i.sub "cat", "dead"}
-    
+    [
+      [/man\(.*\)/, "hat(\\0)"],
+      [/dog\(\w+/, "\\0(bone)"],
+      ["cat", "dead"]
+    ].map { |s, r|
+      a.map! {|i| i.sub(s, r) }
+    }
+    a
   end
   
   def self.hole5 a
-    (0..3).map {|i| [a[i]]} + (0..2).map {|i| a[i, 2] } + [a[0, 3], a[1,3]] + [a]
+    (1..4).map {|n| (0..4-n).map { |i| a[i, n] }}.inject(:+)
   end
   
   def self.hole6 a
