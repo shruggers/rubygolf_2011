@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'rake'
 require 'rspec/core/rake_task'
-require File.dirname(__FILE__) + "/lib/golf.rb"
 COUNT_WHITESPACE = false
 
 RSpec::Core::RakeTask.new(:spec) do |spec|
