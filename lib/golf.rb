@@ -32,6 +32,14 @@ class Golf
   end
   
   def self.hole9 f
-    f =~ /2/ ? "red" : "blue"
+    v = File.read(f).split(/\n/).map { |l| l.split ", " }
+    while true
+      c = Hash.new(0)
+      v.map(&:first).each { |i| i && c[i] += 1 }
+      r = c.invert
+      a = r.keys.max
+      return r[a] if a > (v.size/2.0) || c.size == 2
+      v.map { |p| p.reject! { |s| s == r[r.keys.min] } }
+    end
   end
 end
