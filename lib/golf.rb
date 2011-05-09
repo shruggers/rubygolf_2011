@@ -37,13 +37,13 @@ class Golf
   end
   
   def s.hole8 n
-    f = proc { |i| i < 3 ? 1 : f[i-1] + f[i-2] }
+    f = ->(i) { i < 3 ? 1 : f[i-1] + f[i-2] }
     (1..n).map(&f)
   end
   
   def s.hole9 f
     v = File.read(f).split(/\n/).map { |l| l.split ", " }
-    while true
+    loop {
       c = Hash.new(0)
       v.map(&:first).each { |i| i && c[i] += 1 }
       r = c.invert
@@ -51,6 +51,6 @@ class Golf
       a = k.max
       return r[a] if a > v.size/2.0 || c.size == 2
       v.map { |p| p.reject! { |s| s == r[k.min] } }
-    end
+    }
   end
 end
