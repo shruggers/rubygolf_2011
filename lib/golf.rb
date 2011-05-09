@@ -5,7 +5,7 @@ class Golf
     end
     
     def hole2 s
-      s.split(' ').sort_by{|i| i[1]}.join ' '
+      s.split.sort_by{|i| i[1]}*' '
     end
     
     def hole3 n
@@ -17,29 +17,29 @@ class Golf
     end
     
     def hole5 a
-      b=a.size
-      c=[]
-      (0..b).map{|i| c += (0..b-i-1).map {|j| a[j..j+i] }  }
-      c
+      (1..4).map{|i| a.each_cons(i).to_a}.inject :+
     end
     
     def hole6 n
-      (1..n).map{|i| i%15 == 0 && 'fizzbuzz' || i%3 == 0  && 'fizz' || i%5 == 0 && 'buzz' ||  i }
+      (1..n).map{|i| 
+        s='fizz' if i%3==0
+        s="#{s}buzz" if i%5==0
+        s || i 
+      }
     end
     
     def hole8 n
       a = [1,1]
-      (2..n-1).each {|i| a << a[-2] + a[-1] }
+      (2..n-1).map {|i| a << a[-2] + a[-1] }
       a
     end
     
     def hole9 f
-      v = File.open(f).map{|l| l.chomp.split ', '}
+      v = File.new(f).map{|l| l.chomp.split ', '}
       loop {
-        c = {}
+        c = Hash.new 0
         
-        v.map {|i| c[i[0]] ||= 0
-          c[i[0]] += 1}
+        v.map {|i| c[i[0]] += 1}
 
         s = c.sort_by{|i| i[1]}
         l = s[0]
