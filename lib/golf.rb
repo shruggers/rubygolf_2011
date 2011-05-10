@@ -12,7 +12,10 @@ class Golf
         s="#{s}buzz" if i%5==0
         s || i 
       }',
-    '',
+    'i = -1
+    m = []
+    a.map{ |j| a[i] + 1 != a[i += 1] ? m << [j] : (m[-1] << j if a[i] + 1 != a[i + 1]) }
+    m.map{ |i| i * "-" }',
     'b = [1,1]
       (2..a-1).map {|i| b << b[-2] + b[-1] }
       b',
